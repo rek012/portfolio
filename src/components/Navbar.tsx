@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import Link from 'next/link';
+
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +23,9 @@ export default function Navbar() {
 
     const target = document.querySelector(targetId);
     if (target) {
-      const navbarHeight = 80; // Approximate navbar height
+      // Get the actual navbar height dynamically
+      const navbar = document.querySelector('nav');
+      const navbarHeight = navbar ? navbar.offsetHeight : 80;
       const targetPosition = target.getBoundingClientRect().top + window.scrollY - navbarHeight;
       
       window.scrollTo({
@@ -53,7 +55,7 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             {/* Logo with animated glow */}
-            <Link href="/" className="relative group">
+            <a href="#hero" onClick={(e) => handleSmoothScroll(e, '#hero')} className="relative group cursor-pointer">
               <div className="absolute inset-0 bg-blue-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center gap-2">
                 <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center transform group-hover:rotate-180 transition-transform duration-500">
@@ -63,7 +65,7 @@ export default function Navbar() {
                   Erick John Pascual
                 </span>
               </div>
-            </Link>
+            </a>
 
             {/* Desktop Navigation - Hidden on mobile, shows on md+ */}
             <div className="hidden md:flex items-center gap-2">
@@ -85,8 +87,8 @@ export default function Navbar() {
               
               {/* CTA Button */}
               <a
-                href="#contact"
-                onClick={(e) => handleSmoothScroll(e, '#contact')}
+                href="#hero"
+                onClick={(e) => handleSmoothScroll(e, '#hero')}
                 className="ml-4 px-6 py-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white rounded-lg font-medium transition-all duration-300 shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 hover:scale-105 cursor-pointer"
                 style={{ animation: 'slideDown 0.5s ease-out 0.5s backwards' }}
               >
@@ -162,8 +164,8 @@ export default function Navbar() {
             ))}
             <div className="my-2 h-px bg-gradient-to-r from-transparent via-blue-400/30 to-transparent"></div>
             <a
-              href="#contact"
-              onClick={(e) => handleSmoothScroll(e, '#contact')}
+              href="#hero"
+              onClick={(e) => handleSmoothScroll(e, '#hero')}
               className="block mx-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white text-center rounded-lg font-medium transition-all duration-300 shadow-lg shadow-blue-500/30 cursor-pointer"
               style={{
                 animation: isMobileMenuOpen ? 'slideIn 0.3s ease-out 0.25s backwards' : 'none'
