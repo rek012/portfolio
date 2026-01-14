@@ -144,7 +144,7 @@ export default function Skills() {
 
 				{/* Horizontal Accordion Slider */}
 				<div className={`transition-all duration-1000 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-					<div className="flex gap-2 h-[400px] overflow-hidden">
+					<div className="flex gap-1 sm:gap-2 h-[280px] sm:h-[350px] md:h-[400px] overflow-hidden">
 						{skillCategories.map((category, index) => {
 							const isExpanded = expandedCategory === index;
 							
@@ -152,7 +152,7 @@ export default function Skills() {
 								<button
 									key={index}
 									onClick={() => setExpandedCategory(isExpanded ? null : index)}
-									className={`group relative transition-all duration-700 ease-in-out overflow-hidden rounded-2xl ${
+									className={`group relative transition-all duration-700 ease-in-out overflow-hidden rounded-xl sm:rounded-2xl ${
 										isExpanded ? 'flex-[4]' : 'flex-[0.5] hover:flex-[0.6]'
 									}`}
 								>
@@ -163,54 +163,58 @@ export default function Skills() {
 									<div className="relative h-full bg-slate-800/50 backdrop-blur-sm border border-blue-500/20 hover:border-blue-500/40 transition-all duration-500 overflow-hidden">
 										
 										{/* Collapsed State - Vertical Title & Icon */}
-										<div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 p-4 transition-all duration-700 ${
+										<div className={`absolute inset-0 flex flex-col items-center justify-center gap-2 sm:gap-4 p-2 sm:p-4 transition-all duration-700 ${
 											isExpanded ? 'opacity-0 pointer-events-none' : 'opacity-100'
 										}`}>
 											{/* Icon */}
 											<div className="relative">
 												<div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-30 blur-lg rounded-lg`}></div>
-												<div className={`relative w-12 h-12 bg-gradient-to-br ${category.gradient} rounded-lg flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
-													{category.icon}
+												<div className={`relative w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br ${category.gradient} rounded-lg flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300`}>
+													<div className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6">
+														{category.icon}
+													</div>
 												</div>
 											</div>
 											
 											{/* Vertical Title */}
-											<h3 className="text-white font-bold text-sm writing-mode-vertical text-center whitespace-nowrap transform rotate-180">
+											<h3 className="text-white font-bold text-xs sm:text-sm writing-mode-vertical text-center whitespace-nowrap transform rotate-180">
 												{category.title}
 											</h3>
 										</div>
 
 										{/* Expanded State - Full Content */}
-										<div className={`absolute inset-0 p-6 sm:p-8 flex flex-col transition-all duration-700 ${
+										<div className={`absolute inset-0 p-3 sm:p-4 md:p-6 lg:p-8 flex flex-col transition-all duration-700 ${
 											isExpanded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8 pointer-events-none'
 										}`}>
 											{/* Header with Icon */}
-											<div className="flex items-center gap-4 mb-6">
+											<div className="flex items-center gap-2 sm:gap-3 md:gap-4 mb-3 sm:mb-4 md:mb-6">
 												<div className="relative flex-shrink-0">
 													<div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-30 blur-lg rounded-lg`}></div>
-													<div className={`relative w-14 h-14 bg-gradient-to-br ${category.gradient} rounded-lg flex items-center justify-center text-white`}>
-														{category.icon}
+													<div className={`relative w-10 h-10 sm:w-12 sm:h-12 md:w-14 md:h-14 bg-gradient-to-br ${category.gradient} rounded-lg flex items-center justify-center text-white`}>
+														<div className="w-5 h-5 sm:w-6 sm:h-6">
+															{category.icon}
+														</div>
 													</div>
 												</div>
-												<h3 className={`text-2xl sm:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${category.gradient}`}>
+												<h3 className={`text-base sm:text-xl md:text-2xl lg:text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${category.gradient} leading-tight`}>
 													{category.title}
 												</h3>
 											</div>
 
 											{/* Skills Grid */}
-											<div className="flex-1 overflow-y-auto custom-scrollbar pr-2">
-												<div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+											<div className="flex-1 overflow-y-auto custom-scrollbar pr-1 sm:pr-2">
+												<div className="grid grid-cols-1 gap-2 sm:gap-3">
 													{category.skills.map((skill, skillIndex) => (
 														<div
 															key={skillIndex}
-															className="flex items-center gap-3 p-3 rounded-lg bg-slate-900/30 border border-blue-500/10 hover:border-blue-500/30 hover:bg-slate-900/50 transition-all duration-300 group/skill"
+															className="flex items-center gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg bg-slate-900/30 border border-blue-500/10 hover:border-blue-500/30 hover:bg-slate-900/50 transition-all duration-300 group/skill"
 															style={{ 
 																animationDelay: `${skillIndex * 50}ms`,
 																animation: isExpanded ? 'slideInFromLeft 0.5s ease-out forwards' : 'none'
 															}}
 														>
-															<div className={`flex-shrink-0 w-2 h-2 rounded-full bg-gradient-to-r ${category.gradient} group-hover/skill:scale-150 transition-transform duration-300`}></div>
-															<span className="text-gray-200 text-sm group-hover/skill:text-white transition-colors duration-300">
+															<div className={`flex-shrink-0 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r ${category.gradient} group-hover/skill:scale-150 transition-transform duration-300`}></div>
+															<span className="text-xs sm:text-sm text-gray-200 group-hover/skill:text-white transition-colors duration-300">
 																{skill}
 															</span>
 														</div>
@@ -219,20 +223,20 @@ export default function Skills() {
 											</div>
 
 											{/* Skill Count Badge */}
-											<div className="mt-4 pt-4 border-t border-blue-500/10">
-												<div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r ${category.gradient} bg-opacity-20 border border-blue-500/30`}>
-													<svg className="w-4 h-4 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+											<div className="mt-2 sm:mt-3 md:mt-4 pt-2 sm:pt-3 md:pt-4 border-t border-blue-500/10">
+												<div className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-gradient-to-r ${category.gradient} bg-opacity-20 border border-blue-500/30`}>
+													<svg className="w-3 h-3 sm:w-4 sm:h-4 text-blue-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 														<polyline points="20 6 9 17 4 12"></polyline>
 													</svg>
-													<span className="text-sm font-medium text-blue-200">
-														{category.skills.length} Skills Mastered
+													<span className="text-xs sm:text-sm font-medium text-blue-200">
+														{category.skills.length} Skills
 													</span>
 												</div>
 											</div>
 										</div>
 
 										{/* Decorative corner */}
-										<div className={`absolute bottom-0 right-0 w-32 h-32 bg-gradient-to-tl ${category.gradient} opacity-5 rounded-tl-full transition-opacity duration-700 ${
+										<div className={`absolute bottom-0 right-0 w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 bg-gradient-to-tl ${category.gradient} opacity-5 rounded-tl-full transition-opacity duration-700 ${
 											isExpanded ? 'opacity-10' : 'opacity-5'
 										}`}></div>
 									</div>
@@ -242,8 +246,8 @@ export default function Skills() {
 					</div>
 
 					{/* Helper Text */}
-					<div className="mt-6 text-center">
-						<p className="text-sm text-gray-500">
+					<div className="mt-4 sm:mt-6 text-center">
+						<p className="text-xs sm:text-sm text-gray-500">
 							Click any category to expand and explore • {expandedCategory !== null ? 'Click again to collapse' : 'Choose a skill category'}
 						</p>
 					</div>
